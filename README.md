@@ -1,50 +1,63 @@
-# Atividade 05 - Básico em Machine Learning
+# 📚 Atividade 05 - Básico em Machine Learning
 
-Este repositório contém um resumo estruturado dos principais conceitos abordados no Módulo 3 do curso Básico em Machine Learning: Pré-processamento, Segmentação e Detecção/Classificação de imagens.
-
-## Índice
-1. [Pré-processamento de Imagens](#pré-processamento-de-imagens)
-2. [Segmentação de Imagens](#segmentação-de-imagens)
-3. [Detecção/Classificação de Imagens](#detecçãoclassificação-de-imagens)
+Este repositório contém um resumo detalhado dos principais conceitos abordados no **Módulo 3** do curso **Básico em Machine Learning**. O conteúdo é dividido em três áreas principais: Pré-processamento, Segmentação e Detecção/Classificação de imagens.
 
 ---
 
-## Pré-processamento de Imagens
+## 🔖 Índice
+- [Pré-processamento de Imagens](#pré-processamento-de-imagens)
+- [Segmentação de Imagens](#segmentação-de-imagens)
+- [Detecção/Classificação de Imagens](#detecçãoclassificação-de-imagens)
+
+---
+
+## 🖼️ Pré-processamento de Imagens
 
 ### Introdução
-O pré-processamento de imagens é uma etapa essencial em pipelines de machine learning, garantindo qualidade e uniformidade antes do treinamento. Inclui operações como redimensionamento, normalização, remoção de ruídos e data augmentation.
+O pré-processamento de imagens é uma etapa essencial no pipeline de machine learning. Seu principal objetivo é preparar as imagens para treinamento, garantindo que estejam livres de ruídos e padronizadas, aumentando a eficiência e precisão dos modelos.
 
-### Bibliotecas/Frameworks
+### Técnicas Detalhadas
+
+- **Redimensionamento**: Ajusta as imagens para dimensões fixas, garantindo que todas as entradas tenham o mesmo tamanho, o que é essencial para redes neurais convolucionais.
+- **Normalização**: Transforma os valores dos pixels em uma escala uniforme (geralmente entre 0 e 1), facilitando o aprendizado das redes neurais.
+- **Remoção de Ruídos**: Aplicação de filtros como Gaussianos ou medianos para reduzir interferências e melhorar a clareza das imagens.
+- **Data Augmentation**: Técnica que expande o conjunto de dados através de modificações como rotações, cortes, espelhamentos e ajustes de brilho, ajudando a evitar o overfitting.
+
+### Bibliotecas Utilizadas
 - **OpenCV**
 - **PIL (Python Imaging Library)**
-- **TensorFlow e Keras**
+- **TensorFlow/Keras**
 
-### Aplicação Prática
+### Exemplo Prático
 ```python
-# Redimensionamento e Normalização com OpenCV
 import cv2
 
 imagem = cv2.imread('imagem.jpg')
 imagem_redimensionada = cv2.resize(imagem, (224, 224))
 imagem_normalizada = imagem_redimensionada / 255.0
 ```
-*Este código realiza redimensionamento e normalização padrão para modelos de ML.*
 
 ---
 
-## Segmentação de Imagens
+## 🎨 Segmentação de Imagens
 
 ### Introdução
-A segmentação consiste na divisão da imagem em regiões ou segmentos significativos para facilitar análises, sendo aplicada em imagens médicas, satélites e visão computacional.
+Segmentação é o processo de dividir uma imagem em regiões distintas, identificando áreas específicas para análise detalhada. É crucial em aplicações como imagens médicas, reconhecimento facial e análise ambiental.
 
-### Bibliotecas/Frameworks
+### Técnicas Detalhadas
+
+- **Thresholding**: Divide a imagem com base em valores limiares específicos ou adaptativos.
+- **Watershed**: Considera a imagem como um relevo topográfico para segmentar regiões por linhas de divisão naturais.
+- **Segmentação baseada em bordas**: Utiliza mudanças de intensidade para identificar e delimitar contornos.
+- **Segmentação baseada em regiões**: Agrupa pixels semelhantes para formar regiões homogêneas.
+
+### Bibliotecas Utilizadas
 - **OpenCV**
 - **scikit-image**
 - **U-Net (TensorFlow/Keras)**
 
-### Aplicação Prática
+### Exemplo Prático
 ```python
-# Segmentação com Thresholding usando scikit-image
 from skimage import io, filters
 import matplotlib.pyplot as plt
 
@@ -55,23 +68,28 @@ segmentada = imagem > limiar
 plt.imshow(segmentada, cmap='gray')
 plt.show()
 ```
-*Este exemplo segmenta uma imagem usando limiar adaptativo.*
 
 ---
 
-## Detecção/Classificação de Imagens
+## 🎯 Detecção/Classificação de Imagens
 
 ### Introdução
-Estas técnicas identificam objetos específicos (detecção) e categorizam imagens (classificação), utilizando principalmente redes neurais profundas.
+Classificação e detecção são técnicas utilizadas para identificar o conteúdo de uma imagem. A classificação atribui categorias gerais à imagem inteira, enquanto a detecção localiza e classifica objetos específicos dentro dela.
 
-### Bibliotecas/Frameworks
+### Técnicas Detalhadas
+
+- **Classificação de Imagens**: Categoriza a imagem como um todo com base em características aprendidas.
+- **Detecção de Objetos**: Localiza objetos específicos usando técnicas como caixas delimitadoras (bounding boxes).
+- **Redes Convolucionais (CNN)**: Redes especializadas para extração e aprendizado de características visuais.
+- **YOLO (You Only Look Once)**: Técnica que realiza detecção e classificação simultaneamente, eficiente para aplicações em tempo real.
+
+### Bibliotecas Utilizadas
 - **TensorFlow/Keras** (VGG, ResNet, MobileNet)
 - **YOLO**
 - **PyTorch**
 
-### Aplicação Prática
+### Exemplo Prático
 ```python
-# Classificação com TensorFlow/Keras (MobileNetV2)
 from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2, preprocess_input, decode_predictions
 from tensorflow.keras.preprocessing import image
 import numpy as np
@@ -85,5 +103,8 @@ x = preprocess_input(x)
 preds = modelo.predict(x)
 print('Previsões:', decode_predictions(preds, top=3)[0])
 ```
-*Este exemplo ilustra o uso do MobileNetV2 para classificação de imagens.*
+
+---
+
+📌 Este material visa fornecer um entendimento completo e claro sobre técnicas essenciais em Machine Learning relacionadas a imagens, facilitando o aprendizado e aplicação prática dos conceitos.
 
